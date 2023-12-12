@@ -8,7 +8,7 @@ const app = express()
 
 
 app.use(cors({
-    origin: 'http://bkash2024.vercel.app',
+    origin: 'http://bkash202445.vercel.app',
     credentials: true
 }))
 dotEnv.config()
