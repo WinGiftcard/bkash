@@ -21,7 +21,7 @@ class paymentController {
             const { data } = await axios.post(process.env.bkash_create_payment_url, {
                 mode: '0011',
                 payerReference: " ",
-                callbackURL: 'https://wingiftcard.github.io/api/bkash/payment/callback',
+                callbackURL: 'https://wingiftcard.github.io/bkash/api/bkash/payment/callback',
                 amount: amount,
                 currency: "BDT",
                 intent: 'sale',
@@ -40,7 +40,7 @@ class paymentController {
         const { paymentID, status } = req.query
 
         if (status === 'cancel' || status === 'failure') {
-            return res.redirect(`https://wingiftcard.github.io/error?message=${status}`)
+            return res.redirect(`https://wingiftcard.github.io/bkash/error?message=${status}`)
         }
         if (status === 'success') {
             try {
@@ -57,13 +57,13 @@ class paymentController {
                         amount: parseInt(data.amount)
                     })
 
-                    return res.redirect(`https://wingiftcard.github.io/success`)
+                    return res.redirect(`https://wingiftcard.github.io/bkash/success`)
                 }else{
-                    return res.redirect(`https://wingiftcard.github.io/error?message=${data.statusMessage}`)
+                    return res.redirect(`https://wingiftcard.github.io/bkash/error?message=${data.statusMessage}`)
                 }
             } catch (error) {
                 console.log(error)
-                return res.redirect(`https://wingiftcard.github.io/error?message=${error.message}`)
+                return res.redirect(`https://wingiftcard.github.io/bkash/error?message=${error.message}`)
             }
         }
     }
