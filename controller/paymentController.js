@@ -21,7 +21,7 @@ class paymentController {
             const { data } = await axios.post(process.env.bkash_create_payment_url, {
                 mode: '0011',
                 payerReference: " ",
-                callbackURL: 'http://localhost:5000/api/bkash/payment/callback',
+                callbackURL: 'http://bkash2024.vercel.app/api/bkash/payment/callback',
                 amount: amount,
                 currency: "BDT",
                 intent: 'sale',
@@ -40,7 +40,7 @@ class paymentController {
         const { paymentID, status } = req.query
 
         if (status === 'cancel' || status === 'failure') {
-            return res.redirect(`http://localhost:5173/error?message=${status}`)
+            return res.redirect(`http://bkash2024.vercel.app/error?message=${status}`)
         }
         if (status === 'success') {
             try {
@@ -57,13 +57,13 @@ class paymentController {
                         amount: parseInt(data.amount)
                     })
 
-                    return res.redirect(`http://localhost:5173/success`)
+                    return res.redirect(`http://bkash2024.vercel.app/success`)
                 }else{
-                    return res.redirect(`http://localhost:5173/error?message=${data.statusMessage}`)
+                    return res.redirect(`http://bkash2024.vercel.app/error?message=${data.statusMessage}`)
                 }
             } catch (error) {
                 console.log(error)
-                return res.redirect(`http://localhost:5173/error?message=${error.message}`)
+                return res.redirect(`http://bkash2024.vercel.app/error?message=${error.message}`)
             }
         }
     }
