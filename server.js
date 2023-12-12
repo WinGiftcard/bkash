@@ -8,7 +8,7 @@ const app = express()
 
 
 app.use(cors({
-    origin: 'https://wingiftcard.github.io/',
+    origin: 'https://wingiftcard.github.io/bkash',
     credentials: true
 }))
 dotEnv.config()
